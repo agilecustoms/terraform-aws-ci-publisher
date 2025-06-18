@@ -106,7 +106,7 @@ data "aws_iam_policy_document" "publisher_s3" {
 
 data "aws_iam_policy_document" "publisher" {
   source_policy_documents = concat(
-    var.codeartifact_domain_name == null ? [] : [data.aws_iam_policy_document.publisher_codeartifact.json],
+    var.codeartifact_domain_name == "" ? [] : [data.aws_iam_policy_document.publisher_codeartifact.json],
     [
       data.aws_iam_policy_document.publisher_ecr.json,
       data.aws_iam_policy_document.publisher_s3.json,

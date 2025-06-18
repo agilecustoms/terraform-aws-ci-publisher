@@ -6,7 +6,7 @@ variable "allow_override" {
 }
 
 variable "codeartifact_domain_name" {
-  default = null
+  default = ""
 }
 
 variable "iam_path" {
