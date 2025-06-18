@@ -1,0 +1,24 @@
+name: Verify and Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  Release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Release
+        id: release
+        uses: agilecustoms/gha-release@main
+        with:
+          gha-token: ${{ secrets.GH_ACTIONS_TOKEN }}
+
+      - name: Summary
+        run: echo "### Released ${{ steps.release.outputs.version }} :pushpin:" >> $GITHUB_STEP_SUMMARY
