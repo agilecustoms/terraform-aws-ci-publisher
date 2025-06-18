@@ -1,35 +1,54 @@
-data "aws_iam_policy_document" "publisher" {
-
-  dynamic "statement" {
-    for_each = var.codeartifact_domain_name != "" ? [1] : []
-    content {
-      effect = "Allow"
-      actions = [
-        "codeartifact:GetAuthorizationToken",
-      ]
-      resources = [
-        "arn:${var.partition}:codeartifact:${var.region}:${var.account_id}:domain/${var.codeartifact_domain_name}",
-      ]
-    }
+data "aws_iam_policy_document" "publisher_codeartifact" {
+  statement {
+    effect = "Allow"
+    actions = [
+      "codeartifact:GetAuthorizationToken",
+    ]
+    resources = [
+      "arn:${var.partition}:codeartifact:${var.region}:${var.account_id}:domain/${var.codeartifact_domain_name}",
+    ]
   }
 
-  dynamic "statement" {
-    for_each = var.codeartifact_domain_name != "" ? [1] : []
-    content {
-      effect = "Allow"
-      actions = [
-        "codeartifact:PublishPackageVersion",
-        "codeartifact:PutPackageMetadata"
-      ]
-      # arn:${Partition}:codeartifact:${Region}:${Account}:package/${DomainName}/${RepositoryName}/${PackageFormat}/${PackageNamespace}/${PackageName}
-      # ${PackageNamespace} for maven is a <dependency> groupId
-      # ${PackageNamespace} for npm is a scope like '@types' in '@types/node`
-      resources = [
-        "arn:${var.partition}:codeartifact:${var.region}:${var.account_id}:package/${var.codeartifact_domain_name}/*",
-      ]
-    }
+  statement {
+    effect = "Allow"
+    actions = [
+      "codeartifact:GetRepositoryEndpoint",
+      "codeartifact:ReadFromRepository",
+    ]
+    resources = [
+      "arn:${var.partition}:codeartifact:${var.region}:${var.account_id}:repository/${var.codeartifact_domain_name}/*"
+    ]
   }
 
+  statement {
+    effect = "Allow"
+    actions = [
+      "codeartifact:PublishPackageVersion",
+      "codeartifact:PutPackageMetadata"
+    ]
+    # arn:${Partition}:codeartifact:${Region}:${Account}:package/${DomainName}/${RepositoryName}/${PackageFormat}/${PackageNamespace}/${PackageName}
+    # ${PackageNamespace} for maven is a <dependency> groupId
+    # ${PackageNamespace} for npm is a scope like '@types' in '@types/node`
+    resources = [
+      "arn:${var.partition}:codeartifact:${var.region}:${var.account_id}:package/${var.codeartifact_domain_name}/*",
+    ]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "sts:GetServiceBearerToken",
+    ]
+    resources = ["*"]
+    condition {
+      test     = "StringEquals"
+      values   = ["codeartifact.amazonaws.com"]
+      variable = "sts:AWSServiceName"
+    }
+  }
+}
+
+data "aws_iam_policy_document" "publisher_ecr" {
   statement {
     effect = "Allow"
     actions = [
@@ -53,9 +72,9 @@ data "aws_iam_policy_document" "publisher" {
       resources = ["*"]
     }
   }
+}
 
-  # S3
-
+data "aws_iam_policy_document" "publisher_s3" {
   statement {
     effect = "Allow"
     actions = [
@@ -83,22 +102,16 @@ data "aws_iam_policy_document" "publisher" {
       resources = ["arn:${var.partition}:s3:::${var.s3_bucket_name}${var.s3_prefix}/*"]
     }
   }
+}
 
-  dynamic "statement" {
-    for_each = var.codeartifact_domain_name != "" ? [1] : []
-    content {
-      effect = "Allow"
-      actions = [
-        "sts:GetServiceBearerToken",
-      ]
-      resources = ["*"]
-      condition {
-        test     = "StringEquals"
-        values   = ["codeartifact.amazonaws.com"]
-        variable = "sts:AWSServiceName"
-      }
-    }
-  }
+data "aws_iam_policy_document" "publisher" {
+  source_policy_documents = concat(
+    var.codeartifact_domain_name == null ? [] : [data.aws_iam_policy_document.publisher_codeartifact.json],
+    [
+      data.aws_iam_policy_document.publisher_ecr.json,
+      data.aws_iam_policy_document.publisher_s3.json,
+    ]
+  )
 }
 
 resource "aws_iam_policy" "publisher" {
