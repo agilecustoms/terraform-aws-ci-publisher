@@ -5,6 +5,19 @@ data "aws_iam_policy_document" "publisher" {
     content {
       effect = "Allow"
       actions = [
+        "codeartifact:GetAuthorizationToken",
+      ]
+      resources = [
+        "arn:${var.partition}:codeartifact:${var.region}:${var.account_id}:domain/${var.codeartifact_domain_name}",
+      ]
+    }
+  }
+
+  dynamic "statement" {
+    for_each = var.codeartifact_domain_name != "" ? [1] : []
+    content {
+      effect = "Allow"
+      actions = [
         "codeartifact:PublishPackageVersion",
         "codeartifact:PutPackageMetadata"
       ]
@@ -68,6 +81,22 @@ data "aws_iam_policy_document" "publisher" {
         "s3:DeleteObject",
       ]
       resources = ["arn:${var.partition}:s3:::${var.s3_bucket_name}${var.s3_prefix}/*"]
+    }
+  }
+
+  dynamic "statement" {
+    for_each = var.codeartifact_domain_name != "" ? [1] : []
+    content {
+      effect = "Allow"
+      actions = [
+        "sts:GetServiceBearerToken",
+      ]
+      resources = ["*"]
+      condition {
+        test     = "StringEquals"
+        values   = ["codeartifact.amazonaws.com"]
+        variable = "sts:AWSServiceName"
+      }
     }
   }
 }
