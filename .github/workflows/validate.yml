@@ -1,0 +1,27 @@
+name: Validate
+
+on:
+  push:
+    branches-ignore:
+      - main
+  workflow_call: # can be called from 'validate-and-release' workflow
+
+jobs:
+  Validate:
+    name: Validate-infra
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform init
+        run: terraform init
+
+      - name: Terraform plan
+        run: terraform validate

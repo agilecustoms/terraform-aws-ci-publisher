@@ -1,4 +1,4 @@
-name: Release
+name: Validate and Release
 
 on:
   push:
@@ -6,7 +6,15 @@ on:
       - main
 
 jobs:
+  Validate:
+    uses: ./.github/workflows/validate.yml
+    secrets: inherit
+    permissions:
+      id-token: write
+      contents: read
+
   Release:
+    needs: Validate
     runs-on: ubuntu-latest
     permissions:
       contents: write
