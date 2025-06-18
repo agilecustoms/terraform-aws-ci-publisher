@@ -73,3 +73,4 @@ resource "aws_iam_role_policy_attachment" "publisher" {
   policy_arn = module.publisher_policy.policy_arn
 }
 ``` 
+
