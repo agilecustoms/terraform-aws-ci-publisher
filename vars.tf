@@ -1,6 +1,6 @@
 variable "account_id" {}
 
-variable "allow_override" {
+variable "allow_delete" {
   type    = bool
   default = true
 }

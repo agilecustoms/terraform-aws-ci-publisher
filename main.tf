@@ -63,7 +63,7 @@ data "aws_iam_policy_document" "publisher_ecr" {
   }
 
   dynamic "statement" {
-    for_each = var.allow_override ? [1] : []
+    for_each = var.allow_delete ? [1] : []
     content {
       effect = "Allow"
       actions = [
@@ -84,16 +84,8 @@ data "aws_iam_policy_document" "publisher_s3" {
     resources = ["arn:${var.partition}:s3:::${var.s3_bucket_name}${var.s3_prefix}/*"]
   }
 
-  statement {
-    effect = "Allow"
-    actions = [
-      "s3:DeleteObject",
-    ]
-    resources = ["arn:${var.partition}:s3:::${var.s3_bucket_name}${var.s3_prefix}/*/latest/*"]
-  }
-
   dynamic "statement" {
-    for_each = var.allow_override ? [1] : []
+    for_each = var.allow_delete ? [1] : []
     content {
       effect = "Allow"
       actions = [
