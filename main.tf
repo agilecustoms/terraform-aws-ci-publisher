@@ -54,10 +54,17 @@ data "aws_iam_policy_document" "publisher_ecr" {
     actions = [
       "ecr:BatchCheckLayerAvailability",
       "ecr:CompleteLayerUpload",
-      "ecr:GetAuthorizationToken",
       "ecr:InitiateLayerUpload",
       "ecr:PutImage",
       "ecr:UploadLayerPart",
+    ]
+    resources = ["arn:${var.partition}:ecr:${var.region}:${var.account_id}:repository/*"]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "ecr:GetAuthorizationToken",
     ]
     resources = ["*"]
   }
@@ -69,7 +76,7 @@ data "aws_iam_policy_document" "publisher_ecr" {
       actions = [
         "ecr:BatchDeleteImage", # to override tags such as "latest"
       ]
-      resources = ["*"]
+      resources = ["arn:${var.partition}:ecr:${var.region}:${var.account_id}:repository/*"]
     }
   }
 }
