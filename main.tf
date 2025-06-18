@@ -78,6 +78,14 @@ data "aws_iam_policy_document" "publisher_s3" {
   statement {
     effect = "Allow"
     actions = [
+      "s3:ListBucket",
+    ]
+    resources = ["arn:${var.partition}:s3:::${var.s3_bucket_name}"]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
       "s3:PutObject",
       "s3:PutObjectTagging",
     ]
