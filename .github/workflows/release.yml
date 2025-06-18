@@ -16,7 +16,7 @@ jobs:
 
       - name: Release
         id: release
-        uses: agilecustoms/gha-release@main
+        uses: agilecustoms/release@main
         with:
           gha-token: ${{ secrets.GH_ACTIONS_TOKEN }}
 
