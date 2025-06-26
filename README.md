@@ -4,9 +4,9 @@ IAM policy `/ci/publisher` to publish (release) artifacts in AWS: S3, ECR, CodeA
 This policy is designed to be used in CI pipeline last step when you already built artifacts and want to publish (upload) them
 
 The policy covers major types of artifact stores in AWS:
-- S3 to store arbitrary binaries, policy allows `s3:PutObject` in specified S3 bucket
-- ECR to store Docker images, policy allows `ecr:PutImage` in all ECR repos in the account
-- CodeArtifact to store software packages, policy allows `codeartifact:PublishPackageVersion` in specified CodeArtifact domain
+- S3 for arbitrary binaries, policy allows `s3:PutObject` in specified S3 bucket
+- ECR for Docker images, policy allows `ecr:PutImage` in all ECR repos in the account
+- CodeArtifact for software packages, policy allows `codeartifact:PublishPackageVersion` in specified CodeArtifact domain
 
 ## Usage
 ```hcl
