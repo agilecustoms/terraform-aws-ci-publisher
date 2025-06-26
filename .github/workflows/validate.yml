@@ -4,7 +4,7 @@ on:
   push:
     branches-ignore:
       - main
-  workflow_call: # can be called from 'validate-and-release' workflow
+  workflow_call:
 
 jobs:
   Validate:
