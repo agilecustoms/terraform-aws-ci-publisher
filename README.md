@@ -1,15 +1,21 @@
 # terraform-aws-ci-publisher
-IAM policy ci-publisher to publish artifacts in AWS: S3, ECR, CodeArtifact
+IAM policy `/ci/publisher` to publish (release) artifacts in AWS: S3, ECR, CodeArtifact
+This policy is designed to be used in CI pipeline last step when you already built artifacts and want to publish (upload) them.
+
+The policy covers major types of artifact stores in AWS:
+- S3 to store arbitrary binaries, policy allows `s3:PutObject` in specified S3 bucket
+- ECR to store Docker images, policy allows `ecr:PutImage` in all ECR repos in the account
+- CodeArtifact to store software packages, policy allows `codeartifact:PublishPackageVersion` in specified CodeArtifact domain
 
 ## Usage
 ```hcl
 module "publisher_policy" {
-  source = "git::https://github.com/agilecustoms/terraform-aws-ci-publisher.git?ref=1.0.0"
+  source = "git::https://github.com/agilecustoms/terraform-aws-ci-publisher.git?ref=v1"
 
-  account_id               = local.account_id # AWS account ID, e.g. 123456789012
+  account_id               = local.account_id  # AWS account ID, e.g. 123456789012
   region                   = "us-east-1"
   s3_bucket_name           = "my-company-dist" # {company}-dist is a good convention
-  codeartifact_domain_name = "my-company" # if you use CodeArtifact
+  codeartifact_domain_name = "my-company"      # if you use CodeArtifact
 }
 ```
 
@@ -60,7 +66,7 @@ resource "aws_iam_role" "publisher" {
 }
 
 module "publisher_policy" {
-  source = "git::https://github.com/agilecustoms/terraform-aws-ci-publisher.git?ref=1.0.0"
+  source = "git::https://github.com/agilecustoms/terraform-aws-ci-publisher.git?ref=v1"
 
   account_id               = local.account_id
   codeartifact_domain_name = local.artifact_domain_name
@@ -73,4 +79,3 @@ resource "aws_iam_role_policy_attachment" "publisher" {
   policy_arn = module.publisher_policy.policy_arn
 }
 ``` 
-

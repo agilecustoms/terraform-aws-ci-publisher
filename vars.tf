@@ -13,12 +13,12 @@ variable "codeartifact_domain_name" {
   description = "CodeArtifact domain, typically just a company name. Keep default (empty) if you don't use CodeArtifact"
 }
 
-variable "iam_path" {
+variable "iam_policy_path" {
   default     = "/ci/"
   description = "use path to differentiate application roles, user roles and CI roles"
 }
 
-variable "iam_role_name" {
+variable "iam_policy_name" {
   default = "publisher"
 }
 

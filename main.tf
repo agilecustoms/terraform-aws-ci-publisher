@@ -122,7 +122,7 @@ data "aws_iam_policy_document" "publisher" {
 }
 
 resource "aws_iam_policy" "publisher" {
-  path   = var.iam_path
-  name   = var.iam_role_name
+  path   = var.iam_policy_path
+  name   = var.iam_policy_name
   policy = data.aws_iam_policy_document.publisher.json
 }
