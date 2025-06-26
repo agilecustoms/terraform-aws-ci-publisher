@@ -1,6 +1,7 @@
 # terraform-aws-ci-publisher
 IAM policy `/ci/publisher` to publish (release) artifacts in AWS: S3, ECR, CodeArtifact
-This policy is designed to be used in CI pipeline last step when you already built artifacts and want to publish (upload) them.
+
+This policy is designed to be used in CI pipeline last step when you already built artifacts and want to publish (upload) them
 
 The policy covers major types of artifact stores in AWS:
 - S3 to store arbitrary binaries, policy allows `s3:PutObject` in specified S3 bucket
@@ -19,9 +20,27 @@ module "publisher_policy" {
 }
 ```
 
+## Variables
+| Name                     | Default   | Description                                                                                                                                                 |
+|--------------------------|-----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| account_id               |           | (required) AWS account id where all artifacts are stored (S3, ECR, CodeArtifact)                                                                            |
+| allow_delete             | true      | Allow to delete ECR images and S3 objects - given new version is '1.2.4', it allows to publish versions 'latest', '1.2' and '1'                             |
+| codeartifact_domain_name |           | CodeArtifact domain, typically just a company name. Keep default (empty) if you don't use CodeArtifact                                                      |
+| iam_policy_path          | /ci/      | Use path to differentiate application roles, user roles and CI roles                                                                                        |
+| iam_policy_name          | publisher | Name of the IAM policy                                                                                                                                      |
+| partition                | aws       | AWS partition, e.g. aws, aws-cn, aws-us-gov                                                                                                                 |
+| region                   |           | (required) AWS region where all artifacts are stored (S3, ECR, CodeArtifact)                                                                                |
+| s3_bucket_name           |           | (required) S3 bucket name where all artifacts are stored                                                                                                    |
+| s3_prefix                |           | Allows to narrow permissions only to certain path within a bucket, such as '/release'. Should not be needed if you have a dedicated S3 bucket for artifacts |
+
+## Outputs
+| Name            | Description                                  |
+|-----------------|----------------------------------------------|
+| policy_arn      | ARN of the IAM policy created by this module |
+
 ## How to create a role with this policy
 This module creates just policy, and here is a _recommendation_ how to create a role.
-For roles used in CI pipelines, it is highly recommended to use OIDC provider, not IAM user with credentials.
+For roles used in CI pipelines, it is highly recommended to use OIDC provider, not IAM user with credentials:
 ```hcl
 variable "company" {
   type        = string
@@ -78,4 +97,4 @@ resource "aws_iam_role_policy_attachment" "publisher" {
   role       = aws_iam_role.publisher.name
   policy_arn = module.publisher_policy.policy_arn
 }
-``` 
+```
