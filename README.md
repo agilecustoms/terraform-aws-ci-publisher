@@ -1,8 +1,13 @@
+[![Terraform Registry](https://img.shields.io/badge/Terraform-Module-blue.svg)](https://registry.terraform.io/modules/agilecustoms/ci-publisher/aws/latest)
+[![License](https://img.shields.io/github/license/agilecustoms/terraform-aws-ci-publisher)](https://github.com/agilecustoms/terraform-aws-ci-publisher/blob/main/LICENSE)
+
 # terraform-aws-ci-publisher
+
+## Overview
 
 IAM policy `/ci/publisher` to publish (release) artifacts in AWS: S3, ECR, CodeArtifact
 
-This policy is designed to be used in CI pipeline last step when you already built artifacts and want to publish (upload) them
+This policy is designed to be used in the last step of a CI pipeline after artifacts have been built and are ready to be published (uploaded)
 
 The policy covers major types of artifact stores in AWS:
 - S3 for arbitrary binaries, policy allows `s3:PutObject` in specified S3 bucket
@@ -10,6 +15,13 @@ The policy covers major types of artifact stores in AWS:
 - CodeArtifact for software packages, policy allows `codeartifact:PublishPackageVersion` in specified CodeArtifact domain
 
 To get read-only access to your CodeArtifact packages, see another module [terraform-aws-ci-builder](https://github.com/agilecustoms/terraform-aws-ci-builder)
+
+## Highlights
+
+- Publishes artifacts to S3, ECR, and CodeArtifact
+- Follows least-privilege IAM principle per artifact type
+- Supports OIDC (GitHub Actions, etc.)
+- Enables semantic versioning workflows (e.g. `v1`, `v1.2`, `latest`)
 
 ## Usage
 
@@ -114,9 +126,9 @@ No modules.
 
 | Name                     | Default   | Description                                                                                                                                                 |
 |--------------------------|-----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| account_id               |           | (required) AWS account id where all artifacts are stored (S3, ECR, CodeArtifact)                                                                            |
-| allow_delete             | true      | Allow to delete ECR images and S3 objects - given new version is '1.2.4', it allows to publish versions 'latest', '1.2' and '1'                             |
-| codeartifact_domain_name |           | CodeArtifact domain, typically just a company name. Keep default (empty) if you don't use CodeArtifact                                                      |
+| account_id               |           | (required) AWS account ID where artifact stores (S3, ECR, CodeArtifact) are located                                                                         |
+| allow_delete             | true      | Allow deletion of ECR images and S3 objects. Useful for replacing floating tags like `latest`, `1.2`, and `1` when publishing a new version (e.g. `1.2.4`). |
+| codeartifact_domain_name |           | CodeArtifact domain, typically just a company name. Leave empty if you don't use CodeArtifact                                                               |
 | iam_policy_path          | /ci/      | Use path to differentiate application roles, user roles and CI roles                                                                                        |
 | iam_policy_name          | publisher | Name of the IAM policy                                                                                                                                      |
 | partition                | aws       | AWS partition, e.g. aws, aws-cn, aws-us-gov                                                                                                                 |
@@ -136,4 +148,5 @@ Module is maintained by [Alexey Chekulaev](https://github.com/laxa1986)
 
 ## License
 
-Apache 2 Licensed. See [LICENSE](https://github.com/agilecustoms/terraform-aws-ci-publisher/tree/main/LICENSE) for full details.
+Apache 2 Licensed. See [LICENSE](https://github.com/agilecustoms/terraform-aws-ci-publisher/blob/main/LICENSE) for full details.
+
