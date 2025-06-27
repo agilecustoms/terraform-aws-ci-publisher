@@ -15,7 +15,7 @@ To get read-only access to your CodeArtifact packages, see another module [terra
 
 ```hcl
 module "publisher_policy" {
-  source = "git::https://github.com/agilecustoms/terraform-aws-ci-publisher.git?ref=v1"
+  source = "agilecustoms/ci-publisher/aws"
 
   account_id               = local.account_id  # AWS account ID, e.g. 123456789012
   region                   = "us-east-1"
@@ -91,7 +91,7 @@ resource "aws_iam_role_policy_attachment" "publisher" {
 
 | Name                                                                      | Version   |
 |---------------------------------------------------------------------------|-----------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0    |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.7  |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws)                   | >= 3.38.0 |
 
 ## Providers
@@ -110,7 +110,7 @@ No modules.
 |------------------------------------------------------------------------------------------------------------------------|----------|
 | [aws_iam_policy.publisher](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/aws_iam_policy) | resource |
 
-## Variables
+## Inputs
 
 | Name                     | Default   | Description                                                                                                                                                 |
 |--------------------------|-----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
