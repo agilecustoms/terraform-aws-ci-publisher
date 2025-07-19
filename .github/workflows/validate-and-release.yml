@@ -10,8 +10,8 @@ jobs:
     uses: ./.github/workflows/validate.yml
     secrets: inherit
     permissions:
-      id-token: write
       contents: read
+      id-token: write
 
   Release:
     needs: Validate
