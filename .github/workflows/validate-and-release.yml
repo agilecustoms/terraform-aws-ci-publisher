@@ -16,8 +16,6 @@ jobs:
   Release:
     needs: Validate
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -26,8 +24,6 @@ jobs:
         id: release
         uses: agilecustoms/release@main
         with:
-          version-prefix: v
           floating-tags: false
-
-      - name: Summary
-        run: echo "### Released ${{ steps.release.outputs.version }} :pushpin:" >> $GITHUB_STEP_SUMMARY
+        env:
+          GH_TOKEN: ${{ secrets.GH_PUBLIC_RELEASES_TOKEN }}
