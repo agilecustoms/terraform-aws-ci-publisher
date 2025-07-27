@@ -7,7 +7,8 @@
 
 IAM policy `/ci/publisher` to publish (release) artifacts in AWS: S3, ECR, CodeArtifact
 
-This policy is designed to be used in the last step of a CI pipeline after artifacts have been built and are ready to be published (uploaded)
+This policy is designed to be used in the last step of a CI pipeline after artifacts have been built and are ready to be published (uploaded).
+See GitHub Action [agilecustoms/release](https://github.com/agilecustoms/release)
 
 The policy covers major types of artifact stores in AWS:
 - S3 for arbitrary binaries, policy allows `s3:PutObject` in specified S3 bucket
@@ -98,7 +99,6 @@ resource "aws_iam_role_policy_attachment" "publisher" {
 }
 ```
 
-<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name                                                                      | Version   |
@@ -148,7 +148,7 @@ Module is maintained by [Alexey Chekulaev](https://github.com/laxa1986)
 
 ## License
 
-Apache 2 Licensed. See [LICENSE](https://github.com/agilecustoms/terraform-aws-ci-publisher/blob/main/LICENSE) for full details.
+Apache 2 Licensed. See [LICENSE](https://github.com/agilecustoms/terraform-aws-ci-publisher/blob/main/LICENSE) for full details
 
 ## Copyright
 
