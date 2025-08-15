@@ -129,11 +129,13 @@ No modules.
 | account_id               |           | (required) AWS account ID where artifact stores (S3, ECR, CodeArtifact) are located                                                                         |
 | allow_delete             | true      | Allow deletion of ECR images and S3 objects. Useful for replacing floating tags like `latest`, `1.2`, and `1` when publishing a new version (e.g. `1.2.4`). |
 | codeartifact_domain_name |           | CodeArtifact domain, typically just a company name. Leave empty if you don't use CodeArtifact                                                               |
+| dev                      | false     |                                                                                                                                                             |
 | iam_policy_path          | /ci/      | Use path to differentiate application roles, user roles and CI roles                                                                                        |
 | iam_policy_name          | publisher | Name of the IAM policy                                                                                                                                      |
 | partition                | aws       | AWS partition, e.g. aws, aws-cn, aws-us-gov                                                                                                                 |
 | region                   |           | (required) AWS region where all artifacts are stored (S3, ECR, CodeArtifact)                                                                                |
 | s3_bucket_name           |           | (required) S3 bucket name where all artifacts are stored                                                                                                    |
+| s3_dev_suffix            |           |                                                                                                                                                             |
 | s3_prefix                |           | Allows to narrow permissions only to certain path within a bucket, such as '/release'. Should not be needed if you have a dedicated S3 bucket for artifacts |
 
 ## Outputs

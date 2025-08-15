@@ -124,5 +124,5 @@ data "aws_iam_policy_document" "publisher" {
 resource "aws_iam_policy" "publisher" {
   path   = var.iam_policy_path
   name   = var.iam_policy_name
-  policy = data.aws_iam_policy_document.publisher.json
+  policy = var.dev ? data.aws_iam_policy_document.publisher_dev.json : data.aws_iam_policy_document.publisher.json
 }

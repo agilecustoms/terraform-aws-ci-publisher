@@ -13,6 +13,11 @@ variable "codeartifact_domain_name" {
   description = "CodeArtifact domain, typically just a company name. Keep default (empty) if you don't use CodeArtifact"
 }
 
+variable "dev" {
+  default     = false
+  description = "true limits permissions to dev-release mode where any developer can publish from feature branch"
+}
+
 variable "iam_policy_path" {
   default     = "/ci/"
   description = "use path to differentiate application roles, user roles and CI roles"
@@ -38,4 +43,8 @@ variable "s3_bucket_name" {
 variable "s3_prefix" {
   default     = ""
   description = "allows to narrow permissions only to certain path within a bucket, such as /release. Should not be needed if you have a dedicated S3 bucket for artifacts"
+}
+
+variable "s3_dev_suffix" {
+  default = ""
 }
