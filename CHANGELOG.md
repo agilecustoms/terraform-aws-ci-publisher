@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/agilecustoms/terraform-aws-ci-publisher/compare/v1.1.0...v2.0.0) (2025-09-06)
+
+### ⚠ BREAKING CHANGES
+
+* change s3_prefix behavior
+
+### Features
+
+* change s3_prefix behavior ([e690316](https://github.com/agilecustoms/terraform-aws-ci-publisher/commit/e690316c02f9917926ae6bd80b1afb0d5f0db7d4))
+
+
 ## [1.1.0](https://github.com/agilecustoms/terraform-aws-ci-publisher/compare/v1.0.3...v1.1.0) (2025-09-06)
 
 ### Features
