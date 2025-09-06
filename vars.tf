@@ -14,8 +14,9 @@ variable "codeartifact_domain_name" {
 }
 
 variable "dev" {
+  type        = bool
   default     = false
-  description = "true limits permissions to dev-release mode where any developer can publish from feature branch"
+  description = "limits permissions to dev-release mode where any developer can publish from feature branch"
 }
 
 variable "iam_policy_path" {
@@ -40,11 +41,12 @@ variable "s3_bucket_name" {
   description = "S3 bucket name where all artifacts are stored"
 }
 
+variable "s3_dev_prefix" {
+  default     = "*/feature/"
+  description = "dev-release is a release from feature branch. Use this prefix equal to feature branch prefix to distinguish from normal releases"
+}
+
 variable "s3_prefix" {
   default     = ""
   description = "allows to narrow permissions only to certain path within a bucket, such as /release. Should not be needed if you have a dedicated S3 bucket for artifacts"
-}
-
-variable "s3_dev_suffix" {
-  default = ""
 }

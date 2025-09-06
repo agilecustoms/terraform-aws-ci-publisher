@@ -35,7 +35,7 @@ data "aws_iam_policy_document" "publisher_dev_s3" {
       "s3:PutObject",
       "s3:PutObjectTagging"
     ]
-    resources = ["arn:${var.partition}:s3:::${var.s3_bucket_name}${var.s3_prefix}/*${var.s3_dev_suffix}"]
+    resources = ["arn:${var.partition}:s3:::${var.s3_bucket_name}/${var.s3_dev_prefix}*"]
     condition {
       test     = "StringEquals"
       variable = "s3:RequestObjectTag/Release"
@@ -46,23 +46,9 @@ data "aws_iam_policy_document" "publisher_dev_s3" {
   statement {
     effect = "Deny"
     actions = [
-      "s3:PutObject",
       "s3:PutObjectTagging"
     ]
-    resources = ["arn:${var.partition}:s3:::${var.s3_bucket_name}${var.s3_prefix}/*"]
-    condition {
-      test     = "StringEquals"
-      variable = "aws:ResourceTag/Release"
-      values   = ["true"]
-    }
-  }
-
-  statement {
-    effect = "Deny"
-    actions = [
-      "s3:PutObjectTagging"
-    ]
-    resources = ["arn:${var.partition}:s3:::${var.s3_bucket_name}${var.s3_prefix}/*"]
+    resources = ["arn:${var.partition}:s3:::${var.s3_bucket_name}/*"]
     condition {
       test     = "StringEquals"
       variable = "s3:ExistingObjectTag/Release"
