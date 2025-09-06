@@ -157,7 +157,7 @@ No modules.
 | region                   |            | (required) AWS region where all artifacts are stored (S3, ECR, CodeArtifact)                                                                                                     |
 | s3_bucket_name           |            | (required) S3 bucket name where all artifacts are stored                                                                                                                         |
 | s3_dev_prefix            | */feature/ | dev-release is a release from feature branch. Use this prefix equal to feature branch prefix to distinguish from normal releases                                                 |
-| s3_prefix                |            | Allows to narrow permissions only to certain path within a bucket, such as '/release'. Should not be needed if you have a dedicated S3 bucket for artifacts. Ignored in dev mode |
+| s3_prefix                |            | Allows to narrow permissions only to certain path within a bucket, such as 'release/'. Should not be needed if you have a dedicated S3 bucket for artifacts. Ignored in dev mode |
 
 ## Outputs
 

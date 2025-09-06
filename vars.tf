@@ -48,5 +48,5 @@ variable "s3_dev_prefix" {
 
 variable "s3_prefix" {
   default     = ""
-  description = "allows to narrow permissions only to certain path within a bucket, such as /release. Should not be needed if you have a dedicated S3 bucket for artifacts"
+  description = "allows to narrow permissions only to certain path within a bucket, such as release/. Should not be needed if you have a dedicated S3 bucket for artifacts"
 }

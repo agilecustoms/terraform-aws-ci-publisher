@@ -96,7 +96,7 @@ data "aws_iam_policy_document" "publisher_s3" {
       "s3:PutObject",
       "s3:PutObjectTagging",
     ]
-    resources = ["arn:${var.partition}:s3:::${var.s3_bucket_name}${var.s3_prefix}/*"]
+    resources = ["arn:${var.partition}:s3:::${var.s3_bucket_name}/${var.s3_prefix}*"]
   }
 
   dynamic "statement" {
@@ -106,7 +106,7 @@ data "aws_iam_policy_document" "publisher_s3" {
       actions = [
         "s3:DeleteObject",
       ]
-      resources = ["arn:${var.partition}:s3:::${var.s3_bucket_name}${var.s3_prefix}/*"]
+      resources = ["arn:${var.partition}:s3:::${var.s3_bucket_name}/${var.s3_prefix}*"]
     }
   }
 }
