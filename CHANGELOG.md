@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/agilecustoms/terraform-aws-ci-publisher/compare/v1.0.3...v1.1.0) (2025-09-06)
+
+### Features
+
+* ability to create 'dev' publisher policy ([c4668f9](https://github.com/agilecustoms/terraform-aws-ci-publisher/commit/c4668f9a6d427209ca5070f17b7f1b45097825c2))
+
+
 ## [1.1.0-beta.2](https://github.com/agilecustoms/terraform-aws-ci-publisher/compare/v1.1.0-beta.1...v1.1.0-beta.2) (2025-09-06)
 
 ### Features
