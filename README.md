@@ -122,16 +122,16 @@ resource "aws_iam_role_policy_attachment" "publisher" {
 
 ## Requirements
 
-| Name                                                                      | Version   |
-|---------------------------------------------------------------------------|-----------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.7  |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws)                   | >= 3.38.0 |
+| Name      | Version   |
+|-----------|-----------|
+| terraform | >= 1.5.7  |
+| aws       | >= 3.38.0 |
 
 ## Providers
 
-| Name                                              | Version   |
-|---------------------------------------------------|-----------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.38.0 |
+| Name | Version   |
+|------|-----------|
+| aws  | >= 3.38.0 |
 
 ## Modules
 
