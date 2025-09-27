@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/agilecustoms/terraform-aws-ci-publisher/compare/v2.0.0...v2.0.1) (2025-09-27)
+
+### Miscellaneous
+
+* unify build workflow ([46efbeb](https://github.com/agilecustoms/terraform-aws-ci-publisher/commit/46efbebcfd7dc130b6b01aef05c78469066df75a))
+
+
 ## [2.0.0](https://github.com/agilecustoms/terraform-aws-ci-publisher/compare/v1.1.0...v2.0.0) (2025-09-06)
 
 ### ⚠ BREAKING CHANGES
