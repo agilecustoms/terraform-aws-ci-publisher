@@ -1,20 +1,30 @@
-name: Release
+name: Validate
 
 on:
   push:
-    branches:
-      - main
-      - next
 
 jobs:
   Validate:
-    uses: ./.github/workflows/validate.yml
-    secrets: inherit
+    name: Validate-infra
+    runs-on: ubuntu-latest
     permissions:
       contents: read
       id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform init
+        run: terraform init
+
+      - name: Terraform plan
+        run: terraform validate
 
   Release:
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/next'
     needs: Validate
     runs-on: ubuntu-latest
     environment: release
