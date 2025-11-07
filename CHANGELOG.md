@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2](https://github.com/agilecustoms/terraform-aws-ci-publisher/compare/v2.0.1...v2.0.2) (2025-11-07)
+
+### Miscellaneous
+
+* rename job ([7865b12](https://github.com/agilecustoms/terraform-aws-ci-publisher/commit/7865b12ec58a57ae0b6c37f3a8edb96e956c2d08))
+
+
 ## [2.0.1](https://github.com/agilecustoms/terraform-aws-ci-publisher/compare/v2.0.0...v2.0.1) (2025-09-27)
 
 ### Miscellaneous
