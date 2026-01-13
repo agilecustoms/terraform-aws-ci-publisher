@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.3](https://github.com/agilecustoms/terraform-aws-ci-publisher/compare/v2.0.2...v2.0.3) (2026-01-13)
+
+### Miscellaneous
+
+* use new checkout action for Build phase ([5570918](https://github.com/agilecustoms/terraform-aws-ci-publisher/commit/5570918615568f21319d82f3440ccb29dc4cc768))
+
+
 ## [2.0.2](https://github.com/agilecustoms/terraform-aws-ci-publisher/compare/v2.0.1...v2.0.2) (2025-11-07)
 
 ### Miscellaneous
