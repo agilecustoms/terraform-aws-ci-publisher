@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.4](https://github.com/agilecustoms/terraform-aws-ci-publisher/compare/v2.0.3...v2.0.4) (2026-01-20)
+
+### Miscellaneous
+
+* use actions/checkout@v6 ([28b343b](https://github.com/agilecustoms/terraform-aws-ci-publisher/commit/28b343b35013f4ee2df847d4e631b95eacb1a454))
+
+
 ## [2.0.3](https://github.com/agilecustoms/terraform-aws-ci-publisher/compare/v2.0.2...v2.0.3) (2026-01-13)
 
 ### Miscellaneous
