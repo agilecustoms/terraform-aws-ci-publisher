@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.5](https://github.com/agilecustoms/terraform-aws-ci-publisher/compare/v2.0.4...v2.0.5) (2026-02-01)
+
+### Miscellaneous
+
+* get rid of npm-extra-deps ([ef25725](https://github.com/agilecustoms/terraform-aws-ci-publisher/commit/ef257250c468fd94a698448dfec514bb7ec9e21c))
+
+
 ## [2.0.4](https://github.com/agilecustoms/terraform-aws-ci-publisher/compare/v2.0.3...v2.0.4) (2026-01-20)
 
 ### Miscellaneous
