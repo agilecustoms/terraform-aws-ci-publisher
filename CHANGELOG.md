@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.6](https://github.com/agilecustoms/terraform-aws-ci-publisher/compare/v2.0.5...v2.0.6) (2026-10-09)
+
+### Miscellaneous
+
+* update GitHub actions to latest versions ([1b13865](https://github.com/agilecustoms/terraform-aws-ci-publisher/commit/1b13865bd87c02813403adcabe1280d2b515c09a))
+
+
 ## [2.0.5](https://github.com/agilecustoms/terraform-aws-ci-publisher/compare/v2.0.4...v2.0.5) (2026-02-01)
 
 ### Miscellaneous
