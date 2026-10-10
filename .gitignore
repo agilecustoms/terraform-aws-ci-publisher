@@ -1,10 +1,18 @@
-# IDEs and editors
-.idea/
-
 # System files
 .DS_Store
 Thumbs.db
 
-# Terraform
-.terraform
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Temp files
+.tmp
+
+# Terraform (module: lock file not committed)
+.terraform/
 .terraform.lock.hcl
+.terraform.tfstate.lock.info
+terraform.tfstate
+terraform.tfstate.backup
