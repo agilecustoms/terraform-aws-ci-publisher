@@ -6,3 +6,6 @@ terraform-validate:
 
 terraform-format:
 	@terraform fmt -recursive
+
+terraform-test:
+	@terraform test
