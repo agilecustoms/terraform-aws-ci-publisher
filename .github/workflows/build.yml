@@ -19,7 +19,7 @@ jobs:
       - name: Terraform init
         run: terraform init
 
-      - name: Terraform plan
+      - name: Terraform validate
         run: terraform validate
 
   Release:
