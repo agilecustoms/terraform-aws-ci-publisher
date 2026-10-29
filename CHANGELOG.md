@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.0.7](https://github.com/agilecustoms/terraform-aws-ci-publisher/compare/v2.0.6...v2.0.7) (2026-10-29)
+
+### Miscellaneous
+
+* add terraform tests for IAM policy ([d7fe6c5](https://github.com/agilecustoms/terraform-aws-ci-publisher/commit/d7fe6c5c680452bcf4f19e0d2cb9890428c565cf))
+* rename CI step to Terraform validate [skip ci] ([878010a](https://github.com/agilecustoms/terraform-aws-ci-publisher/commit/878010a0556c75f4f537c6db1418358e65097aa7))
+* unify .gitignore sections [skip ci] ([71568b9](https://github.com/agilecustoms/terraform-aws-ci-publisher/commit/71568b9dc86fe14d53b0d04aa934b8c563aad130))
+
+
 ## [2.0.6](https://github.com/agilecustoms/terraform-aws-ci-publisher/compare/v2.0.5...v2.0.6) (2026-10-09)
 
 ### Miscellaneous
