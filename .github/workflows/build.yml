@@ -4,7 +4,7 @@ on:
   push:
 
 jobs:
-  Validate-infra:
+  Validate:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -27,7 +27,7 @@ jobs:
 
   Release:
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/next'
-    needs: Validate-infra
+    needs: Validate
     runs-on: ubuntu-latest
     environment: release
     steps:
