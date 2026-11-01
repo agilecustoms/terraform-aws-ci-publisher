@@ -17,13 +17,13 @@ jobs:
         uses: hashicorp/setup-terraform@v4
 
       - name: Terraform init
-        run: terraform init
+        run: make terraform-init
 
       - name: Terraform validate
-        run: terraform validate
+        run: make terraform-validate
 
       - name: Terraform test
-        run: terraform test
+        run: make terraform-test
 
   Release:
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/next'
