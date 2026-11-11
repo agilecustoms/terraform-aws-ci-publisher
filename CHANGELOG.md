@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.8](https://github.com/agilecustoms/terraform-aws-ci-publisher/compare/v2.0.7...v2.0.8) (2026-11-11)
+
+### Miscellaneous
+
+* rename Validate-infra job to Validate (infra-only repo) [skip ci] ([af46e80](https://github.com/agilecustoms/terraform-aws-ci-publisher/commit/af46e806af692347846c8814ca01aeda3d0da1d8))
+* tflint (all rules), typed and documented variables, variables.tf ([115643b](https://github.com/agilecustoms/terraform-aws-ci-publisher/commit/115643bcf064de8f28699aec72a83e29d0682d58))
+
+
 ## [2.0.7](https://github.com/agilecustoms/terraform-aws-ci-publisher/compare/v2.0.6...v2.0.7) (2026-10-29)
 
 ### Miscellaneous
