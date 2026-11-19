@@ -1,15 +1,17 @@
-terraform-init:
+deps-install:
+	@terraform init
+
+deps-update:
 	@terraform init -upgrade
 
-terraform-validate:
+# format check, then tflint (config in .tflint.hcl, --init installs ruleset plugins once, then no-op).
+# Needs tflint, see Confluence "Basic setup"
+# fix: terraform fmt -recursive
+lint:
+	@terraform fmt -check -recursive && tflint --init && tflint --format compact
+
+test-tf-validate:
 	@terraform validate
 
-# needs tflint (brew install tflint), config in .tflint.hcl. --init installs ruleset plugins (once, then no-op)
-terraform-lint:
-	@tflint --init && tflint --format compact
-
-terraform-format:
-	@terraform fmt -recursive
-
-terraform-test:
+test-tf:
 	@terraform test
