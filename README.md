@@ -5,13 +5,15 @@
 
 IAM policy `/ci/publisher` to publish (release) artifacts in AWS S3, ECR and CodeArtifact
 
-This policy is designed to be used in the last step of a CI pipeline after artifacts have been built and are ready to be published (uploaded).
+This policy is designed to be used in the last step of a CI pipeline after artifacts have been built and are ready
+to be published (uploaded).
 See GitHub Action [agilecustoms/release](https://github.com/agilecustoms/release)
 
 The policy covers major types of artifact stores in AWS:
 - S3 for arbitrary binaries, policy allows `s3:PutObject` in specified S3 bucket
 - ECR for Docker images, policy allows `ecr:PutImage` in all ECR repos in the account
-- CodeArtifact for software packages, policy allows `codeartifact:PublishPackageVersion` in specified CodeArtifact domain
+- CodeArtifact for software packages, policy allows `codeartifact:PublishPackageVersion` in specified
+  CodeArtifact domain
 
 Besides normal release, this policy also supports _dev-release_ (use input `dev=true`).
 Dev-release allows developers to create a temporary version for testing from a feature branch.

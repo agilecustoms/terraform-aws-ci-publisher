@@ -20,7 +20,8 @@ IAM policy created by this module is used in *release* GitHub Action
 ## Development
 
 `make lint test-tf-validate test-tf`, all targets are in [Makefile](Makefile).
-`test-tf` runs `terraform test` (`tests/publisher.tftest.hcl`) with `command = plan` and a provider that skips AWS credentials.
+`test-tf` runs `terraform test` (`tests/publisher.tftest.hcl`) with `command = plan` and a provider
+that skips AWS credentials.
 `dev.tf`: policy statements for dev-release (`dev = true`).
 `testing.md`: manual checks of the dev-release policy against a real bucket
 
