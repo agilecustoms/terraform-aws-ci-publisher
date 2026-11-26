@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.10](https://github.com/agilecustoms/terraform-aws-ci-publisher/compare/v2.0.9...v2.0.10) (2026-11-26)
+
+### Documentation
+
+* README structure (rule 002), AGENTS.md with internals ([d0d4388](https://github.com/agilecustoms/terraform-aws-ci-publisher/commit/d0d43883c4f3d8d6e30a9e26f8c3e9518c336983))
+
+
 ## [2.0.9](https://github.com/agilecustoms/terraform-aws-ci-publisher/compare/v2.0.8...v2.0.9) (2026-11-19)
 
 ### Dependencies update
