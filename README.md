@@ -1,5 +1,5 @@
-[![Terraform Registry](https://img.shields.io/badge/Terraform-Module-blue.svg)](https://registry.terraform.io/modules/agilecustoms/ci-publisher/aws/latest)
-[![License](https://img.shields.io/github/license/agilecustoms/terraform-aws-ci-publisher)](https://github.com/agilecustoms/terraform-aws-ci-publisher/blob/main/LICENSE)
+[![Terraform Registry][terraform-registry-badge]][terraform-registry]
+[![License][license-badge]][license]
 
 # terraform-aws-ci-publisher
 
@@ -17,9 +17,10 @@ The policy covers major types of artifact stores in AWS:
 
 Besides normal release, this policy also supports _dev-release_ (use input `dev=true`).
 Dev-release allows developers to create a temporary version for testing from a feature branch.
-Comprehensive documentation is available at GH action [agilecustoms/release](https://github.com/agilecustoms/release/blob/main/docs/features/dev-release.md)
+Comprehensive documentation is available at GH action [agilecustoms/release][agilecustoms-release]
 
-To get read-only access to your CodeArtifact packages, see another module [terraform-aws-ci-builder](https://github.com/agilecustoms/terraform-aws-ci-builder)
+To get read-only access to your CodeArtifact packages, see another module
+[terraform-aws-ci-builder][terraform-aws-ci-builder]
 
 ## Highlights
 
@@ -44,7 +45,7 @@ module "publisher_policy" {
 ### How to create a role with this policy
 
 This module creates just policy, and here is a _recommendation_ how to create a role.
-For roles used in CI pipelines, it is highly recommended to use [OIDC provider](https://github.com/aws-actions/configure-aws-credentials?tab=readme-ov-file#quick-start-oidc-recommended)
+For roles used in CI pipelines, it is highly recommended to use [OIDC provider][oidc-provider]
 (not a service account with long living creds):
 ```hcl
 variable "company" {
@@ -161,18 +162,28 @@ No modules.
 
 ## Resources
 
-| Name                                                                                                                   | Type     |
-|------------------------------------------------------------------------------------------------------------------------|----------|
-| [aws_iam_policy.publisher](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/aws_iam_policy) | resource |
+| Name                                       | Type     |
+|--------------------------------------------|----------|
+| [aws_iam_policy.publisher][aws-iam-policy] | resource |
 
 ## Authors
 
-Module is maintained by [Alexey Chekulaev](https://github.com/laxa1986)
+Module is maintained by [Alexey Chekulaev][alexey-chekulaev]
 
 ## License
 
-Apache 2 Licensed. See [LICENSE](https://github.com/agilecustoms/terraform-aws-ci-publisher/blob/main/LICENSE) for full details
+Apache 2 Licensed. See [LICENSE][license] for full details
 
 ## Copyright
 
-Copyright 2025 [Alexey Chekulaev](https://github.com/laxa1986)
+Copyright 2025 [Alexey Chekulaev][alexey-chekulaev]
+
+[agilecustoms-release]: https://github.com/agilecustoms/release/blob/main/docs/features/dev-release.md
+[alexey-chekulaev]: https://github.com/laxa1986
+[aws-iam-policy]: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/aws_iam_policy
+[license]: https://github.com/agilecustoms/terraform-aws-ci-publisher/blob/main/LICENSE
+[license-badge]: https://img.shields.io/github/license/agilecustoms/terraform-aws-ci-publisher
+[oidc-provider]: https://github.com/aws-actions/configure-aws-credentials#quick-start-oidc-recommended
+[terraform-aws-ci-builder]: https://github.com/agilecustoms/terraform-aws-ci-builder
+[terraform-registry]: https://registry.terraform.io/modules/agilecustoms/ci-publisher/aws/latest
+[terraform-registry-badge]: https://img.shields.io/badge/Terraform-Module-blue.svg
