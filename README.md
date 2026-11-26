@@ -3,8 +3,6 @@
 
 # terraform-aws-ci-publisher
 
-## Overview
-
 IAM policy `/ci/publisher` to publish (release) artifacts in AWS S3, ECR and CodeArtifact
 
 This policy is designed to be used in the last step of a CI pipeline after artifacts have been built and are ready to be published (uploaded).
@@ -41,7 +39,7 @@ module "publisher_policy" {
 }
 ```
 
-## How to create a role with this policy
+### How to create a role with this policy
 
 This module creates just policy, and here is a _recommendation_ how to create a role.
 For roles used in CI pipelines, it is highly recommended to use [OIDC provider](https://github.com/aws-actions/configure-aws-credentials?tab=readme-ov-file#quick-start-oidc-recommended)
@@ -120,6 +118,28 @@ resource "aws_iam_role_policy_attachment" "publisher" {
 }
 ```
 
+### Inputs
+
+| Name                     | Required | Default    | Description                                                                                                                                                                      |
+|--------------------------|----------|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| account_id               | yes      |            | AWS account ID where artifact stores (S3, ECR, CodeArtifact) are located                                                                                                         |
+| allow_delete             | no       | true       | Allow deletion of ECR images and S3 objects. Useful for replacing floating tags like `latest`, `1.2`, and `1` when publishing a new version (e.g. `1.2.4`). Ignored in dev mode  |
+| codeartifact_domain_name | no       |            | CodeArtifact domain, typically just a company name. Leave empty if you don't use CodeArtifact. Ignored in dev mode                                                               |
+| dev                      | no       | false      | limits permissions to dev-release mode where any developer can publish from feature branch                                                                                       |
+| iam_policy_path          | no       | /ci/       | Use path to differentiate application roles, user roles and CI roles                                                                                                             |
+| iam_policy_name          | no       | publisher  | Name of the IAM policy                                                                                                                                                           |
+| partition                | no       | aws        | AWS partition, e.g. aws, aws-cn, aws-us-gov                                                                                                                                      |
+| region                   | yes      |            | AWS region where all artifacts are stored (S3, ECR, CodeArtifact)                                                                                                                |
+| s3_bucket_name           | yes      |            | S3 bucket name where all artifacts are stored                                                                                                                                    |
+| s3_dev_prefix            | no       | */feature/ | dev-release is a release from feature branch. Use this prefix equal to feature branch prefix to distinguish from normal releases                                                 |
+| s3_prefix                | no       |            | Allows to narrow permissions only to certain path within a bucket, such as 'release/'. Should not be needed if you have a dedicated S3 bucket for artifacts. Ignored in dev mode |
+
+### Outputs
+
+| Name            | Description                                  |
+|-----------------|----------------------------------------------|
+| policy_arn      | ARN of the IAM policy created by this module |
+
 ## Requirements
 
 | Name      | Version   |
@@ -142,28 +162,6 @@ No modules.
 | Name                                                                                                                   | Type     |
 |------------------------------------------------------------------------------------------------------------------------|----------|
 | [aws_iam_policy.publisher](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/aws_iam_policy) | resource |
-
-## Inputs
-
-| Name                     | Default    | Description                                                                                                                                                                      |
-|--------------------------|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| account_id               |            | (required) AWS account ID where artifact stores (S3, ECR, CodeArtifact) are located                                                                                              |
-| allow_delete             | true       | Allow deletion of ECR images and S3 objects. Useful for replacing floating tags like `latest`, `1.2`, and `1` when publishing a new version (e.g. `1.2.4`). Ignored in dev mode  |
-| codeartifact_domain_name |            | CodeArtifact domain, typically just a company name. Leave empty if you don't use CodeArtifact. Ignored in dev mode                                                               |
-| dev                      | false      | limits permissions to dev-release mode where any developer can publish from feature branch                                                                                       |
-| iam_policy_path          | /ci/       | Use path to differentiate application roles, user roles and CI roles                                                                                                             |
-| iam_policy_name          | publisher  | Name of the IAM policy                                                                                                                                                           |
-| partition                | aws        | AWS partition, e.g. aws, aws-cn, aws-us-gov                                                                                                                                      |
-| region                   |            | (required) AWS region where all artifacts are stored (S3, ECR, CodeArtifact)                                                                                                     |
-| s3_bucket_name           |            | (required) S3 bucket name where all artifacts are stored                                                                                                                         |
-| s3_dev_prefix            | */feature/ | dev-release is a release from feature branch. Use this prefix equal to feature branch prefix to distinguish from normal releases                                                 |
-| s3_prefix                |            | Allows to narrow permissions only to certain path within a bucket, such as 'release/'. Should not be needed if you have a dedicated S3 bucket for artifacts. Ignored in dev mode |
-
-## Outputs
-
-| Name            | Description                                  |
-|-----------------|----------------------------------------------|
-| policy_arn      | ARN of the IAM policy created by this module |
 
 ## Authors
 
