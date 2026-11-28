@@ -14,6 +14,11 @@
 (`aws/account_dist/role-publisher.tf`, `role-publisher-dev.tf`).
 IAM policy created by this module is used in *release* GitHub Action
 
+## Changes
+
+The module is public, others depend on it. There is no prerelease channel: `Validate` (lint, `terraform test`)
+runs before `Release`, then every push to `main` is released. Users pin a version (no floating tags)
+
 ## Development
 
 `make lint test-tf-validate test-tf`, all targets are in [Makefile](Makefile).
@@ -24,5 +29,4 @@ that skips AWS credentials.
 
 ## Documentation rules
 
-- the repo is public: in docs and examples use placeholders (`my-company`, `123456789012`), not real ids
 - README Inputs table must match `variables.tf` (names, required, defaults), Outputs table must match `outputs.tf`
